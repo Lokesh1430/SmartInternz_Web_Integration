@@ -44,10 +44,10 @@
   --surface-color: #ffffff;
 }
 .dashboard-container{
-  height: 100%;
-  width: 40%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 }
-
 .dark-background {
   --background-color: #37517e;
   --default-color: #ffffff;
@@ -1382,6 +1382,9 @@ section,
     margin-bottom: 20px;
   }
 }
+
+
+
 
 /*--------------------------------------------------------------
 # Call To Action Section
@@ -3287,12 +3290,64 @@ section,
   }
 }
 
+
 /*--------------------------------------------------------------
-# Starter Section Section
+# RANGE DASHBOARD BUTTONS
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+
+.dashboard-top-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:40px;
 }
+
+.dash-btn{
+  background:#1f3c88;
+  color:white;
+  border:none;
+  padding:14px 28px;
+  border-radius:50px;
+  font-size:18px;
+  font-weight:600;
+  transition:0.3s;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+.dash-btn:hover{
+  background:#47b2e4;
+  transform:translateY(-3px);
+}
+
+.active-btn{
+  background:#00b894;
+}
+
+.dashboard-wrapper{
+  width:100%;
+}
+
+.dashboard-frame{
+  display:none;
+  animation:fadeEffect 0.5s ease;
+}
+
+.active-dashboard{
+  display:block;
+}
+
+@keyframes fadeEffect{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0px);
+  }
+}
+
 
 /*--------------------------------------------------------------
 # Error 404 Section
@@ -3578,4 +3633,190 @@ section,
   padding-left: 5px;
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
+}
+
+/* ==========================================================
+   EV RANGE DASHBOARD — RESPONSIVE PROFESSIONAL LAYOUT
+   ADD THIS AT END OF EXISTING CSS
+========================================================== */
+
+#range-dashboard {
+  background: #f5f7fb;
+  position: relative;
+}
+
+/* Navigation Buttons */
+.range-nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 10px 20px 40px;
+}
+
+/* Dashboard Buttons */
+.range-tab {
+  background: linear-gradient(135deg, #1f3c88, #2952cc);
+  color: #ffffff;
+  border: none;
+  outline: none;
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 5px 16px rgba(0,0,0,0.15);
+}
+
+/* Hover Effect */
+.range-tab:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #47b2e4, #2196f3);
+  box-shadow: 0 8px 24px rgba(71,178,228,0.35);
+}
+
+/* Active Button */
+.range-tab.active-tab {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0,184,148,0.35);
+}
+
+/* Dashboard Wrapper */
+.dashboard-frame {
+  display: none;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.45s ease;
+}
+
+/* Active Dashboard */
+.dashboard-frame.active-dashboard {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tableau Container */
+.tableau-wrap {
+  width: 100%;
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+/* Tableau Placeholder */
+.tableauPlaceholder {
+  width: 100% !important;
+}
+
+/* Tableau Object */
+.tableauViz {
+  width: 100% !important;
+  min-height: 950px !important;
+  border-radius: 14px;
+}
+
+/* Smooth Horizontal Scroll */
+.tableau-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tableau-wrap::-webkit-scrollbar-thumb {
+  background: #1f3c88;
+  border-radius: 50px;
+}
+
+.tableau-wrap::-webkit-scrollbar-track {
+  background: #dfe6e9;
+}
+
+/* Large Screens */
+@media (min-width: 1600px) {
+
+  .tableauViz {
+    min-height: 1200px !important;
+  }
+
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+
+  .range-nav-container {
+    gap: 14px;
+  }
+
+  .range-tab {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  .tableau-wrap {
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .tableauViz {
+    min-height: 750px !important;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+
+  #range-dashboard {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .range-nav-container {
+    gap: 12px;
+    padding-bottom: 25px;
+  }
+
+  .range-tab {
+    font-size: 14px;
+    padding: 11px 18px;
+  }
+
+  .tableau-wrap {
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .tableauViz {
+    min-height: 600px !important;
+  }
+
+}
+/* =========================================
+   RESPONSIVE TABLEAU LAYOUT
+========================================= */
+
+.dashboard-frame {
+  width: 100%;
+  overflow: hidden;
+}
+
+.tableau-wrap {
+  width: 100%;
+  overflow-x: hidden;
+  padding: 10px;
+}
+
+.tableauViz {
+  width: 100% !important;
+  min-width: 100% !important;
+  height: 950px !important;
 }
